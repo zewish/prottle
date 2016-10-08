@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+    - "lts"
+branches:
+    only:
+        - "master"
+before_script:
+    - npm install
+script: npm test
