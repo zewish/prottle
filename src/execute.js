@@ -2,7 +2,9 @@
 
 let EventEmitter = require('events');
 
-module.exports = (limit, promises) => {
+module.exports = (limit, arr) => {
+    let promises = [].concat(arr);
+
     let results = []
         , emitter = new EventEmitter();
 

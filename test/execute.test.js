@@ -15,6 +15,21 @@ describe('execute.js', () => {
         execute.should.be.a('function');
     });
 
+    it('does not modify given array', () => {
+        let arr = [
+            () => Promise.resolve(1)
+            , () => Promise.resolve(2)
+            , () => Promise.resolve(3)
+        ];
+
+        let length = arr.length;
+
+        return execute(1, arr)
+        .then(() => {
+            arr.length.should.equal(length);
+        });
+    });
+
     it('resolves', () => {
         return execute(3, [
             () => Promise.resolve(1)
