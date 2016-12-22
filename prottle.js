@@ -3,9 +3,18 @@
 let EventEmitter = require('events');
 
 module.exports = (limit, arr) => {
-    let promises = [].concat(arr);
+    limit = parseInt(limit);
 
-    let results = []
+    if (isNaN(limit) || limit <= 0) {
+        return Promise.reject(Error('Limit must be at least 1'));
+    }
+
+    if (!Array.isArray(arr)) {
+        return Promise.reject(Error('Array of promises required'));
+    }
+
+    let promises = [].concat(arr)
+        , results = []
         , emitter = new EventEmitter();
 
     let run = (batch, id) => {

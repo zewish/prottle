@@ -4,15 +4,43 @@ require('chai')
 .use(require('chai-as-promised'))
 .should();
 
-describe('execute.js', () => {
-    let execute;
+describe('prottle.js', () => {
+    let prottle;
 
     beforeEach(() => {
-        execute = require('../src/execute.js');
+        prottle = require('./prottle.js');
     });
 
     it('exports a fn', () => {
-        execute.should.be.a('function');
+        prottle.should.be.a('function');
+    });
+
+    it('rejects with limit error', () => {
+        return prottle()
+        .catch((err) => {
+            err.message.should.equal('Limit must be at least 1');
+        });
+    });
+
+    it('rejects with limit error', () => {
+        return prottle(0)
+        .catch((err) => {
+            err.message.should.equal('Limit must be at least 1');
+        });
+    });
+
+    it('rejects with limit error', () => {
+        return prottle('dsad')
+        .catch((err) => {
+            err.message.should.equal('Limit must be at least 1');
+        });
+    });
+
+    it('rejects with array error', () => {
+        return prottle(1, 'boo')
+        .catch((err) => {
+            err.message.should.equal('Array of promises required');
+        });
     });
 
     it('does not modify given array', () => {
@@ -24,14 +52,14 @@ describe('execute.js', () => {
 
         let length = arr.length;
 
-        return execute(1, arr)
+        return prottle(1, arr)
         .then(() => {
             arr.length.should.equal(length);
         });
     });
 
     it('resolves', () => {
-        return execute(3, [
+        return prottle(3, [
             () => Promise.resolve(1)
             , () => Promise.resolve(2)
             , () => Promise.resolve(3)
@@ -42,7 +70,7 @@ describe('execute.js', () => {
     });
 
     it('rejects', () => {
-        return execute(2, [
+        return prottle(2, [
             () => Promise.resolve(1)
             , () => Promise.resolve(2)
             , () => Promise.resolve(3)
