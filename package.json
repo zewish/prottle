@@ -1,6 +1,6 @@
 {
   "name": "prottle",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Promise.all() throttle",
   "main": "prottle.js",
   "typings": "prottle.d.ts",
