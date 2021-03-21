@@ -1,8 +1,6 @@
 declare const prottle: <ResponseType extends any>(
   limit: number,
-  arr: Array<
-    () => Promise<any>
-  >
+  arr: Array<() => any>
 ) => Promise<ResponseType[]>;
 
 export = prottle;
