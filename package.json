@@ -1,18 +1,23 @@
 {
   "name": "prottle",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Promise.all() throttle",
   "main": "prottle.js",
+  "typings": "prottle.d.ts",
   "scripts": {
     "test": "mocha ./*.test.js"
   },
   "author": "Iskren Slavov <iskren.s@gmail.com>",
   "license": "BSD-2-Clause",
   "devDependencies": {
-    "chai": "^3.5.0",
-    "chai-as-promised": "^6.0.0",
-    "mocha": "^3.2.0"
+    "chai": "^4.3.4",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^8.3.2"
   },
+  "files": [
+    "prottle.js",
+    "prottle.d.ts"
+  ],
   "keywords": [
     "promise",
     "throttle",
